@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <!-- Bulma CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="title has-text-centered">Expense Tracker</h1>
+
+        <!-- Hidden elements to store categories and amounts -->
+        <div id="categories" style="display:none;">
+            <%= JSON.stringify(categories) %>
+        </div>
+        <div id="amounts" style="display:none;">
+            <%= JSON.stringify(amounts) %>
+        </div>
+
+        <nav class="navbar">
+            <div class="navbar-menu is-active">
+                <div class="navbar-start">
+                    <a href="/dashboard" class="navbar-item">Dashboard</a>
+                    <a href="/add_expense" class="navbar-item">Add Expense</a>
+                    <a href="/all_expenses" class="navbar-item">All Expenses</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="section">
+            <h2 class="subtitle">Dashboard</h2>
+
+            <!-- Graph Section: Expenses by Category -->
+            <section class="box">
+                <h3 class="subtitle">Expenses by Category</h3>
+                <canvas id="categoryChart"></canvas> <!-- Canvas for chart -->
+            </section>
+
+            <section>
+                <table class="table is-fullwidth">
+                    <thead>
+                        <tr>
+                            <th>Trip</th>
+                            <th>Expense Detail</th>
+                            <th>Amount</th>
+                            <th>Expense Type</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for (let item of expense) { %>
+                            <tr>
+                                <td>
+                                    <%= item.trip %>
+                                </td>
+                                <td>
+                                    <%= item.expense %>
+                                </td>
+                                <td>
+                                    <%= item.amount %>
+                                </td>
+                                <td>
+                                    <%= item.expenseFor %>
+                                </td>
+                                <td>
+                                    <%= new Date(item.expenseOn).toLocaleDateString("en-IN") %>
+                                </td>
+                            </tr>
+                            <% } %>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </div>
+
+    <!-- Link to the external JS file -->
+    <script src="/js/filter.js"></script>
+</body>
+
+</html>

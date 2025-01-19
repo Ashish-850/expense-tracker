@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Expense</title>
+    <!-- Bulma CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="title has-text-centered">Expense Tracker</h1>
+
+        <nav class="navbar">
+            <div class="navbar-menu is-active">
+                <div class="navbar-start">
+                    <a href="/dashboard" class="navbar-item">Dashboard</a>
+                    <a href="/add_expense" class="navbar-item">Add Expense</a>
+                    <a href="/all_expenses" class="navbar-item">All Expenses</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="section">
+            <h2 class="subtitle">Add Expense</h2>
+            <form action="#" method="post" class="box">
+                <div class="field">
+                    <label class="label" for="trip">Trip Detail:</label>
+                    <div class="control">
+                        <input class="input" type="text" name="trip" placeholder="Enter Trip Details">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label" for="expense">Expense Detail:</label>
+                    <div class="control">
+                        <input class="input" type="text" name="expense" placeholder="Enter Expense Details">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label" for="amount">Expense Amount:</label>
+                    <div class="control">
+                        <input class="input" type="number" name="amount" id="amount" placeholder="0">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label" for="expenseFor">Expended On:</label>
+                    <div class="control">
+                        <div class="select">
+                            <select name="expenseFor" id="expenseFor">
+                                <% for (item of category) { %>
+                                    <option value="<%= item %>">
+                                        <%= item %>
+                                    </option>
+                                    <% } %>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label" for="date">Date:</label>
+                    <div class="control">
+                        <input class="input" type="date" name="expenseOn" id="date">
+                    </div>
+                </div>
+
+                <div class="field is-grouped is-grouped-right">
+                    <div class="control">
+                        <button class="button is-link">Add Expense</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
